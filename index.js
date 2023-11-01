@@ -8,7 +8,6 @@ const bot = new TelegramBot(process.env.BOT_TOKEN, {
    autoStart: true,
 });
 
-bot.on("polling_error", (err) => console.log(err.data.error.message));
 
 bot.on("text", async (msg) => {
    console.log(msg);
@@ -128,67 +127,4 @@ bot.on("successful_payment", async (ctx) => {
    }
 });
 
-// bot.command("start", async (ctx) => {
-//    try {
-//       await ctx.replyWithHTML(
-//          "<b>Выберете что вас интересует</b>",
-//          Markup.inlineKeyboard([
-//             [
-//                Markup.button.callback(
-//                   "Бесплатный курс с секретами успешного успеха",
-//                   "btn_1"
-//                ),
-//             ],
-//             [
-//                Markup.button.callback(
-//                   "Купить интенсив у Лидуси и отдать ей все свои деньги",
-//                   "btn_2"
-//                ),
-//             ],
-//          ])
-//       );
-//    } catch (e) {
-//       console.err(e);
-//    }
-// });
-
-// function addActionBot(name, src, text) {
-//    bot.action(name, async (ctx) => {
-//       try {
-//          await ctx.answerCbQuery();
-//          if (src !== false) {
-//             await ctx.replyWithPhoto({
-//                source: src,
-//             });
-//          }
-//          await ctx.replyWithHTML(text, {
-//             disable_web_page_preview: true,
-//          });
-//       } catch (e) {
-//          console.error(e);
-//       }
-//    });
-// }
-
-// addActionBot(
-//    "btn_1",
-//    "./img/1.jpeg",
-//    "Привет вот держи бесплатный продукт знаю все равно смотреть не будешь. Но мне ведь нужно сделать вид что я добрая. На https://www.youtube.com/"
-// );
-// addActionBot(
-//    "btn_2",
-//    "./img/2.jpeg",
-//    "Вот тут прийдется подождать нужно подзапариться с оплатой но хочешь кидай на карту я не против"
-// );
-
-// bot.command("product", (ctx) =>
-//    ctx.replyWithHTML("https://www.youtube.com/", {
-//       disable_web_page_preview: true,
-//    })
-// );
-
-// bot.launch();
-
-// // Enable graceful stop
-// process.once("SIGINT", () => bot.stop("SIGINT"));
-// process.once("SIGTERM", () => bot.stop("SIGTERM"));
+bot.on("polling_error", (err) => console.log(err.data.error.message));
